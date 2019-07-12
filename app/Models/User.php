@@ -27,7 +27,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function addresses()
+    {
+        return $this->hasMany(UserAddress::class);
+    }
     /**
      * The attributes that should be cast to native types.
      *
