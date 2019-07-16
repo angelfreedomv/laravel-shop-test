@@ -38,6 +38,7 @@
       </div>
     </div>
   </div>
+  @endsection
   @section('scriptsAfterJs')
   <script>
       $(document).ready(function() {
@@ -67,5 +68,5 @@
           });
         });
       });
-      </script>
+   </script>
 @endsection
