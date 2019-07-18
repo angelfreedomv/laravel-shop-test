@@ -49,7 +49,7 @@ class ProductsController extends Controller
             ],
         ]);
     }
-    
+
     public function show(Product $product, Request $request)
     {
         if (!$product->on_sale) {
@@ -84,5 +84,11 @@ class ProductsController extends Controller
         $user->favoriteProducts()->detach($product);
 
         return [];
+    }
+    public function favorites(Request $request)
+    {
+        $products = $request->user()->favoriteProducts()->paginate(16);
+
+        return view('products.favorites', ['products' => $products]);
     }
 }
