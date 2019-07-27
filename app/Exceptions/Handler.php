@@ -13,7 +13,8 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        InvalidRequestException::class,
+        CouponCodeUnavailableException::class,
     ];
 
     /**
@@ -25,6 +26,8 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+  
 
     /**
      * Report or log an exception.
@@ -48,4 +51,5 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+    
 }
