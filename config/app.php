@@ -125,6 +125,7 @@ return [
 
     'order_ttl' => 1800,
 
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -227,5 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    'ngrok_url' => env('NGROK_URL'),
 
 ];
