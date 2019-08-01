@@ -46,7 +46,7 @@ class InstallmentItem extends Model
         }
 
         return $total->getValue();
-    }
+    } 
     
     // 创建一个访问器，返回当前还款计划是否已经逾期
     public function getIsOverdueAttribute()
