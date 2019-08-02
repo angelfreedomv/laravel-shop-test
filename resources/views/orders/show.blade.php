@@ -244,7 +244,7 @@
     });
   
        // 分期付款按钮点击事件
-       $('#btn-installment').click(function () {
+      $('#btn-installment').click(function () {
       // 展示分期弹框
       $('#installment-modal').modal();
     });
@@ -258,7 +258,13 @@
           // todo 跳转到分期付款页面
         })
     });
-
+    
+    $('.btn-select-installment').click(function () {
+      axios.post('{{ route('payment.installment', ['order' => $order->id]) }}', { count: $(this).data('count') })
+        .then(function (response) {
+          location.href = '/installments/' + response.data.id;
+        })
+    });
   });
 </script>
 @endsection
