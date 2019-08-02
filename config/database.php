@@ -30,6 +30,11 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
+    
+    'elasticsearch' => [
+        // Elasticsearch 支持多台服务器负载均衡，因此这里是一个数组
+        'hosts' => explode(',', env('ES_HOSTS')),
+    ],
 
     'connections' => [
 
@@ -83,7 +88,7 @@ return [
         ],
 
     ],
-
+     
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table
