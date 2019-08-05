@@ -55,6 +55,10 @@ public function getImageUrlAttribute()
     }
     return \Storage::disk('public')->url($this->attributes['image']);
 }
+public function scopeByIds($query, $ids)
+{
+    return $query->whereIn('id', $ids)->orderByRaw(sprintf("FIND_IN_SET(id, '%s')", join(',', $ids)));
+}
 public function toESArray()
 {
     $arr['properties'] = $this->properties->map(function (ProductProperty $property) {
