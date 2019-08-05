@@ -57,6 +57,12 @@ public function getImageUrlAttribute()
 }
 public function toESArray()
 {
+    $arr['properties'] = $this->properties->map(function (ProductProperty $property) {
+        // 对应地增加一个 search_value 字段，用符号 : 将属性名和属性值拼接起来
+        return array_merge(array_only($property->toArray(), ['name', 'value']), [
+            'search_value' => $property->name.':'.$property->value,
+        ]);
+    });
     // 只取出需要的字段
     $arr = array_only($this->toArray(), [
         'id',

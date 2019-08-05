@@ -37,7 +37,15 @@ class ProductsController extends Controller
             // 将搜索词根据空格拆分成数组，并过滤掉空项
             $keywords = array_filter(explode(' ', $search));
 
-            $params['body']['query']['bool']['must'] = [];
+            $params['body']['query']['bool']['filter'][] = [
+                'nested' => [
+                    'path'  => 'properties',
+                    'query' => [
+                        // 将原来的两个 term 查询改成一个
+                        ['term' => ['properties.search_value' => $filter]],
+                    ],
+                ],
+            ];
             // 遍历搜索词数组，分别添加到 must 查询中
             foreach ($keywords as $keyword) {
                 $params['body']['query']['bool']['must'][] = [
