@@ -6,7 +6,8 @@ use Illuminate\Console\Command;
 
 class SyncProducts extends Command
 {
-    protected $signature = 'es:sync-products';
+     // 添加一个名为 index，默认值为 products 的参数
+     protected $signature = 'es:sync-products {--index=products}';
 
     protected $description = '将商品数据同步到 Elasticsearch';
 
@@ -14,6 +15,7 @@ class SyncProducts extends Command
     {
         parent::__construct();
     }
+    
 
     public function handle()
     {
@@ -36,7 +38,8 @@ class SyncProducts extends Command
 
                     $req['body'][] = [
                         'index' => [
-                            '_index' => 'products',
+                            // 从参数中读取索引名称
+                            '_index' => $this->option('index'),
                             '_type'  => '_doc',
                             '_id'    => $data['id'],
                         ],
