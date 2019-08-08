@@ -118,6 +118,7 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+   
 
     'key' => env('APP_KEY'),
 
@@ -238,5 +239,7 @@ return [
     ],
 
     'ngrok_url' => env('NGROK_URL'),
+
+    'seckill_order_ttl' => 600,
 
 ];
