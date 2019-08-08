@@ -11,11 +11,14 @@ class Product extends Model
     public static $typeMap = [
         self::TYPE_NORMAL  => '普通商品',
         self::TYPE_CROWDFUNDING => '众筹商品',
+        self::TYPE_SECKILL => '秒杀商品',
     ];
     protected $fillable = [
         'title','long_title',  'description', 'image', 'on_sale', 
         'rating', 'sold_count', 'review_count', 'price','type',
 ];
+
+const TYPE_SECKILL = 'seckill';
 
 protected $casts = [
 'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
@@ -36,6 +39,10 @@ public function category()
 public function properties()
 {
     return $this->hasMany(ProductProperty::class);
+}
+public function seckill()
+{
+    return $this->hasOne(SeckillProduct::class);
 }
 public function getGroupedPropertiesAttribute()
 {
