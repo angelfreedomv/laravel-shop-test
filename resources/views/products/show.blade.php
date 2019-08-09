@@ -405,19 +405,19 @@
         // 调用 SweetAlert 弹框
         swal({
           text: '选择收货地址',
-          content: addressSelector[0],
-          buttons: ['取消', '确定']
-        }).then(function (ret) {
-          if (!ret) {
-            return;
-          }
-          // 从地址列表中找出当前用户选择的地址对象
-          var address = _.find(addresses, {id: parseInt(addressSelector.val())});
-          var req = {
-            // 将地址对象中的字段放入 address 参数
-            address: _.pick(address, ['province','city','district','address','zip','contact_name','contact_phone']),
-            sku_id: $('label.active input[name=skus]').val()
-          };
+        content: addressSelector[0],
+        buttons: ['取消', '确定']
+      }).then(function (ret) {
+        if (!ret) {
+          return;
+        }
+        // 从地址列表中找出当前用户选择的地址对象
+        var address = _.find(addresses, {id: parseInt(addressSelector.val())});
+        var req = {
+          // 将地址对象中的字段放入 address 参数
+          address: _.pick(address, ['province','city','district','address','zip','contact_name','contact_phone']),
+          sku_id: $('label.active input[name=skus]').val()
+        };
           // 调用秒杀商品下单接口
           axios.post('{{ route('seckill_orders.store') }}', req)
             .then(function (response) {
