@@ -17,6 +17,9 @@ Route::get('products', 'ProductsController@index')->name('products.index');
 // 在之前的路由里加上一个 verify 参数
 Auth::routes(['verify' => true]);
 
+
+Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store');
+
 // auth 中间件代表需要登录，verified中间件代表需要经过邮箱验证
 Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('user_addresses', 'UserAddressesController@index')->name('user_addresses.index');
@@ -60,9 +63,9 @@ Route::post('payment/wechat/refund_notify', 'PaymentController@wechatRefundNotif
 Route::post('installments/alipay/notify', 'InstallmentsController@alipayNotify')->name('installments.alipay.notify');
 Route::post('installments/wechat/notify', 'InstallmentsController@wechatNotify')->name('installments.wechat.notify');
 Route::post('installments/wechat/refund_notify', 'InstallmentsController@wechatRefundNotify')->name('installments.wechat.refund_notify');
-Route::group(['middleware' => ['auth', 'verified']], function() {
-    Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store');
-});
+//Route::group(['middleware' => ['auth', 'verified']], function() {
+//    Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store');
+//});
 
 /*Route::get('alipay', function() {
     return app('alipay')->web([
