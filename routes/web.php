@@ -63,6 +63,7 @@ Route::post('payment/wechat/refund_notify', 'PaymentController@wechatRefundNotif
 Route::post('installments/alipay/notify', 'InstallmentsController@alipayNotify')->name('installments.alipay.notify');
 Route::post('installments/wechat/notify', 'InstallmentsController@wechatNotify')->name('installments.wechat.notify');
 Route::post('installments/wechat/refund_notify', 'InstallmentsController@wechatRefundNotify')->name('installments.wechat.refund_notify');
+Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store')->middleware('random_drop:80');
 //Route::group(['middleware' => ['auth', 'verified']], function() {
 //    Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store');
 //});
